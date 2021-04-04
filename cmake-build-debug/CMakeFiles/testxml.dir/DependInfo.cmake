@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "D:/Project/testxml/XML/TXMLDecoder.cpp" "D:/Project/testxml/cmake-build-debug/CMakeFiles/testxml.dir/XML/TXMLDecoder.cpp.obj"
+  "D:/Project/testxml/XML/XMLDecoder.cpp" "D:/Project/testxml/cmake-build-debug/CMakeFiles/testxml.dir/XML/XMLDecoder.cpp.obj"
   "D:/Project/testxml/main.cpp" "D:/Project/testxml/cmake-build-debug/CMakeFiles/testxml.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

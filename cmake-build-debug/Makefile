@@ -142,6 +142,60 @@ testxml/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/build
 .PHONY : testxml/fast
 
+XML/TXMLDecoder.obj: XML/TXMLDecoder.cpp.obj
+
+.PHONY : XML/TXMLDecoder.obj
+
+# target to build an object file
+XML/TXMLDecoder.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/XML/TXMLDecoder.cpp.obj
+.PHONY : XML/TXMLDecoder.cpp.obj
+
+XML/TXMLDecoder.i: XML/TXMLDecoder.cpp.i
+
+.PHONY : XML/TXMLDecoder.i
+
+# target to preprocess a source file
+XML/TXMLDecoder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/XML/TXMLDecoder.cpp.i
+.PHONY : XML/TXMLDecoder.cpp.i
+
+XML/TXMLDecoder.s: XML/TXMLDecoder.cpp.s
+
+.PHONY : XML/TXMLDecoder.s
+
+# target to generate assembly for a file
+XML/TXMLDecoder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/XML/TXMLDecoder.cpp.s
+.PHONY : XML/TXMLDecoder.cpp.s
+
+XML/XMLDecoder.obj: XML/XMLDecoder.cpp.obj
+
+.PHONY : XML/XMLDecoder.obj
+
+# target to build an object file
+XML/XMLDecoder.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/XML/XMLDecoder.cpp.obj
+.PHONY : XML/XMLDecoder.cpp.obj
+
+XML/XMLDecoder.i: XML/XMLDecoder.cpp.i
+
+.PHONY : XML/XMLDecoder.i
+
+# target to preprocess a source file
+XML/XMLDecoder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/XML/XMLDecoder.cpp.i
+.PHONY : XML/XMLDecoder.cpp.i
+
+XML/XMLDecoder.s: XML/XMLDecoder.cpp.s
+
+.PHONY : XML/XMLDecoder.s
+
+# target to generate assembly for a file
+XML/XMLDecoder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\testxml.dir\build.make CMakeFiles/testxml.dir/XML/XMLDecoder.cpp.s
+.PHONY : XML/XMLDecoder.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -178,6 +232,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... testxml
+	@echo ... XML/TXMLDecoder.obj
+	@echo ... XML/TXMLDecoder.i
+	@echo ... XML/TXMLDecoder.s
+	@echo ... XML/XMLDecoder.obj
+	@echo ... XML/XMLDecoder.i
+	@echo ... XML/XMLDecoder.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

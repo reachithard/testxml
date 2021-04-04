@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
 #include "libxml/xmlmemory.h"
 #include "libxml/parser.h"
+
+
+#include "XML.h"
+#include "Serial.h"
+
 void
 parseStory (xmlDocPtr doc, xmlNodePtr cur) {
     xmlChar *key;
@@ -47,8 +53,14 @@ parseDoc(char *docname) {
     xmlFreeDoc(doc);
     return;
 }
-int
-main(int argc, char **argv) {
+
+struct Group{
+    int a = 0;
+    int b = 0;
+    Serial(O(a));
+};
+
+int main(int argc, char **argv) {
     char *docname;
     if (argc <= 1) {
         printf("Usage: %s docname\n", argv[0]);
@@ -56,5 +68,9 @@ main(int argc, char **argv) {
     }
     docname = argv[1];
     parseDoc (docname);
+
+    Group n1;
+    string str = "./workspace.xml";
+    XML::DecodeFile(str, n1);
     return (1);
 }

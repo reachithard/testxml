@@ -84,6 +84,30 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/Project/testxml/XML/Serial.h">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/TXMLDecoder.cpp">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/TXMLDecoder.h">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/XML.h">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/XMLDecoder.cpp">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/XMLDecoder.h">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/XMLTraits.h">
+			<Option target="testxml"/>
+		</Unit>
+		<Unit filename="D:/Project/testxml/XML/l1l2_expand.h">
+			<Option target="testxml"/>
+		</Unit>
 		<Unit filename="D:/Project/testxml/main.cpp">
 			<Option target="testxml"/>
 		</Unit>

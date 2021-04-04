@@ -1,0 +1,34 @@
+//
+// Created by 罗林one on 2021/4/4.
+//
+
+#ifndef TESTXML_L1L2_EXPAND_H
+#define TESTXML_L1L2_EXPAND_H
+
+#define SERIAL_COUNT_N(LEVEL, ACTION, _99,_98,_97,_96,_95,_94,_93,_92,_91,_90,_89,_88,_87,_86,_85,_84,_83,_82,_81,_80,_79,_78,_77,_76,_75,_74,_73,_72,_71,_70,_69,_68,_67,_66,_65,_64,_63,_62,_61,_60,_59,_58,_57,_56,_55,_54,_53,_52,_51,_50,_49,_48,_47,_46,_45,_44,_43,_42,_41,_40,_39,_38,_37,_36,_35,_34,_33,_32,_31,_30,_29,_28,_27,_26,_25,_24,_23,_22,_21,_20,_19,_18,_17,_16,_15,_14,_13,_12,_11,_10,_9,_8,_7,_6,_5,_4,_3,_2,_1,N,...) LEVEL##N
+
+#define SERIAL_EXPAND(...) __VA_ARGS__
+
+
+#ifndef _MSC_VER
+//#define SERIAL_N(LEVEL, ACTION, ...)    SERIAL_EXPAND(SERIAL_COUNT_N(LEVEL, ACTION, __VA_ARGS__, _3,_2,_1))  SERIAL_EXPAND((ACTION, __VA_ARGS__))
+//#define SERIAL_N2(LEVEL, ACTION, ...)    SERIAL_EXPAND(SERIAL_COUNT_N(LEVEL, ACTION, __VA_ARGS__, _3,_2,_1))  SERIAL_EXPAND((ACTION, __VA_ARGS__))
+
+#define SERIAL_N(LEVEL, ACTION, ...)  SERIAL_COUNT_N(LEVEL, ACTION, __VA_ARGS__, _99,_98,_97,_96,_95,_94,_93,_92,_91,_90,_89,_88,_87,_86,_85,_84,_83,_82,_81,_80,_79,_78,_77,_76,_75,_74,_73,_72,_71,_70,_69,_68,_67,_66,_65,_64,_63,_62,_61,_60,_59,_58,_57,_56,_55,_54,_53,_52,_51,_50,_49,_48,_47,_46,_45,_44,_43,_42,_41,_40,_39,_38,_37,_36,_35,_34,_33,_32,_31,_30,_29,_28,_27,_26,_25,_24,_23,_22,_21,_20,_19,_18,_17,_16,_15,_14,_13,_12,_11,_10,_9,_8,_7,_6,_5,_4,_3,_2,_1) (ACTION, __VA_ARGS__)
+
+#define SERIAL_N2(LEVEL, ACTION, ...) SERIAL_COUNT_N(LEVEL, ACTION, __VA_ARGS__, _99,_98,_97,_96,_95,_94,_93,_92,_91,_90,_89,_88,_87,_86,_85,_84,_83,_82,_81,_80,_79,_78,_77,_76,_75,_74,_73,_72,_71,_70,_69,_68,_67,_66,_65,_64,_63,_62,_61,_60,_59,_58,_57,_56,_55,_54,_53,_52,_51,_50,_49,_48,_47,_46,_45,_44,_43,_42,_41,_40,_39,_38,_37,_36,_35,_34,_33,_32,_31,_30,_29,_28,_27,_26,_25,_24,_23,_22,_21,_20,_19,_18,_17,_16,_15,_14,_13,_12,_11,_10,_9,_8,_7,_6,_5,_4,_3,_2,_1) (ACTION, __VA_ARGS__)
+
+#define SERIAL_L1_DEF(ACT, M)    ACT(M)
+#define SERIAL_L1_1(ACT, M)    SERIAL_L1_DEF(ACT, M)
+#define SERIAL_L1_2(ACT, M, ...) SERIAL_L1_DEF(ACT, M)   SERIAL_L1_1(ACT, __VA_ARGS__)
+
+#define SERIAL_L2_DEF(ACT, M)    ACT(M)
+#define SERIAL_L2_1(ACT, M)    SERIAL_L2_DEF(ACT, M)
+#define SERIAL_L2_2(ACT, M, ...) SERIAL_L2_DEF(ACT, M)   SERIAL_L2_1(ACT, __VA_ARGS__)
+
+#else
+
+
+#endif
+
+#endif //TESTXML_L1L2_EXPAND_H
