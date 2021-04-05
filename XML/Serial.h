@@ -26,30 +26,30 @@ using namespace std;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ decode act ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #define SERIAL_DECODE_ACT_O(M) \
         cout << "SERIAL_DECODE_ACT_O" << endl;                       \
-        //__x_pack_obj.decode(#M, __x_pack_self.M, &__x_pack_ext);
+        __serial_obj.decode(#M, __serial_self.M);
 
 // enum for not support c++11
 #define SERIAL_DECODE_ACT_E(M)      \
-        __x_pack_obj.decode(#M, *((int*)&__x_pack_self.M), &__x_pack_ext);
+        __serial_obj.decode(#M, *((int*)&__serial_self.M));
 
 
 #define SERIAL_DECODE_ACT_A(M, NAME)                                      \
     {                                                                     \
         static xpack::Alias __x_pack_alias(#M, NAME);                     \
         xpack::Extend __x_pack_ext(__x_pack_flag, &__x_pack_alias);       \
-        const char *__new_name = __x_pack_alias.Name(__x_pack_obj.Type());\
-        __x_pack_obj.decode(__new_name, __x_pack_self.M, &__x_pack_ext);  \
+        const char *__new_name = __x_pack_alias.Name(__serial_obj.Type());\
+        __serial_obj.decode(__new_name, __serial_self.M);  \
     }
 
 // Inheritance B::__x_pack_decode(__x_pack_obj)
-#define SERIAL_DECODE_ACT_I(P)   __x_pack_obj.decode(NULL, static_cast<P&>(__x_pack_self), NULL);
+#define SERIAL_DECODE_ACT_I(P)   __serial_obj.decode(NULL, static_cast<P&>(__serial_self), NULL);
 
 // bitfield, not support alias
 #define SERIAL_DECODE_ACT_B(B)                                \
     {                                                         \
-        x_pack_decltype(__x_pack_self.B) __x_pack_tmp;        \
-        __x_pack_obj.decode(#B, __x_pack_tmp, &__x_pack_ext); \
-        __x_pack_self.B = __x_pack_tmp;\
+        x_pack_decltype(__serial_self.B) __x_pack_tmp;        \
+        __serial_obj.decode(#B, __x_pack_tmp); \
+        __serial_self.B = __x_pack_tmp;\
     }
 
 #define SERIAL_COMMON \
@@ -58,8 +58,8 @@ public:               \
 
 #define SERIAL_ENCODE_BEGIN                                         \
     template<class SERIAL_DOC, class SERIAL_ME>                     \
-    void SerialEncode(SERIAL_DOC& obj,                              \
-                        const SERIAL_ME& me                        \
+    void SerialEncode(SERIAL_DOC& __serial_obj,                              \
+                         SERIAL_ME& __serial_self                        \
                         /*pconst xpack::Extend *__x_pack_ext*/) const   \
     {                                                               \
 //        (void) __x_pack_ext;
@@ -68,8 +68,8 @@ public:               \
 
 #define SERIAL_DECODE_BEGIN                                         \
     template<class SERIAL_DOC, class SERIAL_ME>                     \
-    void SerialDecode(SERIAL_DOC& obj,                              \
-                        const SERIAL_ME& me                        \
+    void SerialDecode(SERIAL_DOC& __serial_obj,                              \
+                        SERIAL_ME& __serial_self                        \
                         /*pconst xpack::Extend *__x_pack_ext*/) const   \
     {                                                               \
 //        (void) __x_pack_ext;

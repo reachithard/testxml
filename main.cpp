@@ -55,22 +55,22 @@ parseDoc(char *docname) {
 }
 
 struct Group{
-    int a = 0;
-    int b = 0;
-    Serial(O(a));
+    int master;
+    Serial(O(master));
 };
 
 int main(int argc, char **argv) {
-    char *docname;
-    if (argc <= 1) {
-        printf("Usage: %s docname\n", argv[0]);
-        return(0);
-    }
-    docname = argv[1];
-    parseDoc (docname);
+//    char *docname;
+//    if (argc <= 1) {
+//        printf("Usage: %s docname\n", argv[0]);
+//        return(0);
+//    }
+//    docname = argv[1];
+//    parseDoc (docname);
 
     Group n1;
     string str = "./workspace.xml";
     XML::DecodeFile(str, n1);
+    cout << "get value " << n1.master << endl;
     return (1);
 }

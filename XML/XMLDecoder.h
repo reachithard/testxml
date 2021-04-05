@@ -5,8 +5,6 @@
 #ifndef TESTXML_XMLDECODER_H
 #define TESTXML_XMLDECODER_H
 
-#include "TXMLDecoder.h"
-
 #include <map>
 #include <vector>
 #include <fstream>
@@ -14,6 +12,9 @@
 #include <cstring>
 
 #include "libxml/parser.h"
+
+#include "Util.h"
+#include "TXMLDecoder.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ class XMLDecoder : public TXMLDecoder<XMLDecoder> {
     typedef xmlNodePtr XML_READER_NODE;
 public:
     friend class TXMLDecoder<XMLDecoder>;
+    using xdoc_type::decode;
 
 public:
     XMLDecoder(std::string& str, bool isfile = false){
@@ -73,7 +75,7 @@ public:
 
             _node = xmlDocGetRootElement(_doc);
 
-            //init();
+            init();
             return;
         } while (false);
 
@@ -86,7 +88,79 @@ public:
         throw std::runtime_error(err);
     }
 
+    XMLDecoder* Find(const char*key, XMLDecoder *tmp) {
+        node_index::iterator iter;
+        if (_childs_index.end() != (iter=_childs_index.find((const unsigned char*)key))) {
+            tmp->_key = key;
+            tmp->_parent = this;
+            tmp->_node = _childs[iter->second];
+            //tmp->init();
+            return tmp;
+        } else {
+            return NULL;
+        }
+    }
+
+    template<class T>
+    typename x_enable_if<Numeric<T>::is_integer, bool>::type decode(const char *key, T &val){
+        bool exists;
+        std::string v = get_val(key, exists);
+        cout << "getval decode " << v << endl;
+        if (!exists) {
+//            if (Extend::Mandatory(ext)) {
+//                decode_exception("mandatory key not found", key);
+//            }
+            return false;
+        }
+        if (Util::atoi(v, val)) {
+            return true;
+        } else {
+            //decode_exception("parse int fail. not integer or overflow", key);
+            return false;
+        }
+    }
+
 private:
+    XMLDecoder():xdoc_type(NULL, ""),_doc(NULL),_node(NULL) {
+        init();
+    }
+//    XMLDecoder(const XML_READER_NODE* val, const XMLDecoder *parent, const char*key, size_t iter=0):xdoc_type(parent, key),_doc(NULL),_node(val),_iter(iter) {
+//        //init();
+//    }
+//    XMLDecoder(const XML_READER_NODE* val, const XMLDecoder *parent, size_t index):xdoc_type(parent, index),_doc(NULL),_node(val) {
+//        //init();
+//    }
+
+    void init() {
+        if (NULL != _node) {
+            XML_READER_NODE tmp = xmlFirstElementChild(_node);
+            for (size_t i=0; tmp; tmp=xmlNextElementSibling(tmp), ++i) {
+                std::cout << "map" << tmp->name << std::endl;
+                _childs.push_back(tmp);
+                _childs_index[tmp->name] = i;
+            }
+        }
+    }
+
+    std::string get_val(const char *key, bool &exists) {
+        exists = true;
+        if (NULL == key) {
+            return (const char*)xmlNodeListGetString(_doc, _node->xmlChildrenNode, 1);
+        } else {
+            node_index::iterator iter;
+            if (_childs_index.end()!=(iter=_childs_index.find((const unsigned char*)key))) {
+                return (const char*)xmlNodeListGetString(_doc, _childs[iter->second]->xmlChildrenNode, 1);
+            } else {
+//                rapidxml::xml_attribute<char> *attr = _node->first_attribute(key);
+//                if (NULL != attr) {
+//                    return attr->value();
+//                }
+            }
+        }
+        exists = false;
+        return "";
+    }
+
     XML_READER_DOCUMENT _doc;
     char *_xml_data;
 

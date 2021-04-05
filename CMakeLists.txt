@@ -11,5 +11,5 @@ set(LIBPATH
 include_directories(${INCLUDEPATH})
 link_directories(${LIBPATH})
 
-add_executable(testxml main.cpp XML/TXMLDecoder.cpp XML/TXMLDecoder.h XML/XMLDecoder.cpp XML/XMLDecoder.h XML/XML.h XML/XMLTraits.h XML/Serial.h XML/l1l2_expand.h)
+add_executable(testxml main.cpp XML/TXMLDecoder.cpp XML/TXMLDecoder.h XML/XMLDecoder.cpp XML/XMLDecoder.h XML/XML.h XML/XMLTraits.h XML/Serial.h XML/l1l2_expand.h XML/Util.h XML/Numeric.h)
 target_link_libraries(testxml libxml2)
